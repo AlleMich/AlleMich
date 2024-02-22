@@ -1,0 +1,30 @@
+C:\Program Files\Tesseract-OCR
+pip install pytesseract Pillow
+from PIL import Image
+import pytesseract
+
+def extract_text_from_image(image_path):
+    try:
+        text = pytesseract.image_to_string(Image.open(image_path))
+        return text
+    except Exception as e:
+        return str(e)
+
+def main():
+    print("Willkommen zum Bild-Text-Extraktions-Chatbot!")
+    
+    while True:
+        user_input = input("Bitte gib den Pfad zum Bild ein (oder 'exit' zum Beenden): ")
+        
+        if user_input.lower() == 'exit':
+            print("Auf Wiedersehen!")
+            break
+
+        extracted_text = extract_text_from_image(user_input)
+        
+        print("\nExtrahierter Text:")
+        print(extracted_text)
+        print("\n")
+
+if __name__ == "__main__":
+    main()
